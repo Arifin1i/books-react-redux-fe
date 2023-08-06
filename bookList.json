@@ -1,0 +1,36 @@
+[{
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "genre": "Fiction",
+        "published": "July 11, 1960",
+        "review":["good", "liked it"]
+    },
+    {
+        "title": "1984",
+        "author": "George Orwell",
+        "genre": "Science Fiction",
+        "published": "June 8, 1949",
+        "review":[]
+    },
+    {
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "genre": "Fiction",
+        "published": "April 10, 1925",
+        "review":[]
+    },
+    {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "genre": "Romance",
+        "published": "January 28, 1813",
+        "review":[]
+    },
+    {
+        "title": "Harry Potter and the Sorcerer's Stone",
+        "author": "J.K. Rowling",
+        "genre": "Fantasy",
+        "published": "June 26, 1997",
+        "review":[]
+    }
+]
