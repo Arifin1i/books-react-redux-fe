@@ -4,11 +4,27 @@ import { api } from "../../api/apiSlice";
 
 const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    createBook: builder.mutation({
+      query: (data) => ({
+        url: `/books`,
+        method: "POST",
+        body: data,
+      }),
+    }),
     getBooks: builder.query({
       query: () => "/books",
     }),
+    getLatestBooks: builder.query({
+      query: () => "/latestBooks",
+    }),
     singleBook: builder.query({
       query: (id) => `/books/${id}`,
+    }),
+    deleteSingleBook: builder.mutation({
+      query: (id) => ({
+        url: `/books/${id}`,
+        method: "DELETE",
+      }),
     }),
     reviewComment: builder.mutation({
       query: ({ id, data }) => ({
@@ -26,8 +42,11 @@ const bookApi = api.injectEndpoints({
 });
 
 export const {
+  useDeleteSingleBookMutation,
+  useCreateBookMutation,
   useGetBooksQuery,
   useSingleBookQuery,
   useReviewCommentMutation,
   useGetCommentQuery,
+  useGetLatestBooksQuery,
 } = bookApi;

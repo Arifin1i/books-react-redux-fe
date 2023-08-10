@@ -1,37 +1,56 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebas/firebase.init";
+import { setUser } from "../redux/features/user/userSlice";
 
 const Navbar = () => {
+  const { user } = useAppSelector((state) => state.user);
+
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    console.log("Logout");
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      dispatch(setUser(null));
+    });
+  };
+
   return (
     <div>
       <div className="navbar bg-slate-600">
         <div className="navbar-start">
-          {/* <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </label>
-          </div> */}
           <a className="btn btn-ghost normal-case text-white text-xl">
             My Collection
           </a>
         </div>
 
         <div className="navbar-end">
-          <Link className="btn  text-slate-600" to={"/login"} >Sign In</Link>
-          <Link className="btn  text-slate-600 mx-5 " to={"/signup"} >Sign Up</Link>
+          <Link className="btn  text-slate-600 mx-5 " to={"/books"}>
+            All Books
+          </Link>
+          <Link className="btn  text-slate-600 mx-5 " to={"/newBooks"}>
+            Add New
+          </Link>
+
+          {!user.email && (
+            <>
+              <Link className="btn  text-slate-600" to={"/login"}>
+                Sign In
+              </Link>
+              <Link className="btn  text-slate-600 mx-5 " to={"/signup"}>
+                Sign Up
+              </Link>
+            </>
+          )}
+
+          {user.email && (
+            <div onClick={handleLogout} className="btn  text-slate-600">
+              Logout
+            </div>
+          )}
         </div>
       </div>
 

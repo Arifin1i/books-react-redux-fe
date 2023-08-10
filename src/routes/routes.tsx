@@ -7,6 +7,7 @@ import MainLayout from '../layouts/MainLayout';
 import Books from '../pages/Books';
 import { LoginForm } from '../pages/Login';
 import { Signup } from '../pages/SignUp';
+import NewBooks from '../pages/NewBooks';
 
 
 
@@ -42,6 +43,10 @@ const routes = createBrowserRouter([
   {
     path: '/signup',
     element: <Signup></Signup>
+  },
+  {
+    path: '/newBooks',
+    element: <NewBooks></NewBooks>
   },
 //   {
 //     path: '*',
