@@ -15,6 +15,7 @@ import {
   useGetCommentQuery,
   useReviewCommentMutation,
 } from "../redux/features/book/bookApi";
+import { useAppSelector } from "../redux/hooks";
 
 interface IProps {
   id: string;
@@ -23,6 +24,8 @@ interface IProps {
 export default function BookReview({ id }: IProps) {
   const [inputValue, setInputValue] = useState<string>("");
 
+  const { user, isLoading: Loading } = useAppSelector((state) => state.user);
+console.log(user.email)
   const { data } = useGetCommentQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000,
@@ -37,6 +40,12 @@ export default function BookReview({ id }: IProps) {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!user.email) {
+      alert('You must be logged in to post.');
+      return;
+    }
+
+   
     console.log(inputValue);
 
     const options = {
@@ -55,6 +64,7 @@ export default function BookReview({ id }: IProps) {
   return (
     <div className="max-w-7xl mx-auto mt-5 flex justify-center justify-evenly text-lg mb-4">
       <div className="mt-10">
+       
         {data?.comments?.map((comment: string, index: number) => (
           <div key={index} className="flex gap-3 items-center mb-5">
             {/* <Avatar>
@@ -87,13 +97,29 @@ export default function BookReview({ id }: IProps) {
           onChange={handleChange}
           value={inputValue}
         ></textarea>
-        <button
-          type="submit"
-          className="rounded-full h-10 w-10 p-2 text-[25px]"
-        >
-          <FiSend />
-        </button>
+        {/* {!user.email && (
+          <button
+            disabled
+            // type="submit"
+            className="rounded-full h-10 w-10 p-2 text-[25px]"
+          >
+            <FiSend />
+          </button>
+        )
+        } */}
+{/* 
+        {user.email && ( */}
+          <button
+            type="submit"
+            className="rounded-full h-10 w-10 p-2 text-[25px]"
+          >
+            <FiSend />
+          </button>
+        {/* )} */}
       </form>
     </div>
   );
 }
+// function useAuth(): { authenticatedUser: any; } {
+//   throw new Error("Function not implemented.");
+// }

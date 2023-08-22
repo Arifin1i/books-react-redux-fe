@@ -8,6 +8,7 @@ import Books from '../pages/Books';
 import { LoginForm } from '../pages/Login';
 import { Signup } from '../pages/SignUp';
 import NewBooks from '../pages/NewBooks';
+import BookEditForm from '../pages/BookEditForm';
 
 
 
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
         element: <BookDetails book={undefined}></BookDetails>,
         // loader: ({params})=> fetch(`http://localhost:5000/books/${params.id}`)
       },
+      {
+        path: '/bookEditForm/:id',
+        element: <BookEditForm book={undefined}></BookEditForm>
+      },
     //   {
     //     path: '/checkout',
     //     element: <Checkout />,
@@ -48,6 +53,7 @@ const routes = createBrowserRouter([
     path: '/newBooks',
     element: <NewBooks></NewBooks>
   },
+
 //   {
 //     path: '*',
 //     element: <NotFound />,

@@ -18,21 +18,22 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
-    const { user, isLoading } = useAppSelector((state) => state.user);
+  const { user, isLoading } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onSubmit = (data: LoginFormInputs) => {
     console.log(data);
     dispatch(loginUser({ email: data.email, password: data.password }));
   };
 
-    useEffect(() => {
-      if (user.email && !isLoading) {
-        navigate("/");
-      }
-    }, [user.email, isLoading]);
+  useEffect(() => {
+    if (user.email && !isLoading) {
+      navigate("/");
+      console.log('loggedin')
+    }
+  }, [user.email, isLoading]);
 
   return (
     <div>
@@ -79,7 +80,9 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
                   type="password"
                   autoCapitalize="none"
                   autoComplete="password"
-                  {...register('password', { required: 'Password is required' })}
+                  {...register("password", {
+                    required: "Password is required",
+                  })}
                 />
                 <label className="label">
                   {/* <a href="#" className="label-text-alt link link-hover">Forgot password?</a> */}
