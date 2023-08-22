@@ -31,7 +31,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
   useEffect(() => {
     if (user.email && !isLoading) {
       navigate("/");
-      console.log('loggedin')
+      console.log("loggedin");
     }
   }, [user.email, isLoading]);
 
@@ -72,7 +72,9 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text  w-full px-4 py-2 rounded-md border">
+                    Password
+                  </span>
                 </label>
                 <input
                   id="password"
@@ -101,7 +103,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
                     } */}
             <h2 className="text-center mb-5">
               {" "}
-              New to Genius car{" "}
+              New to here{" "}
               <Link to="/signup" className="text-orange-700">
                 Signup
               </Link>{" "}

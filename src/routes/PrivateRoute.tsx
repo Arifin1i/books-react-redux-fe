@@ -1,16 +1,24 @@
-import React, { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-// import { AuthContext } from '../Context/AuthProvider';
 
-// const PrivateRoute = ({ children }) => {
-//       const{user, loading} =useContext(AuthContext);
-//     if(loading) {
-//         <div>Loading...</div>
-//     }
-//     if (!user ) {
-//         return     <Navigate to ='/login'></Navigate>;
-//     }
-//     return children;
-// };
+import { ReactNode } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAppSelector } from '../redux/hooks';
 
-// export default PrivateRoute;
+interface IProps {
+  children: ReactNode;
+}
+
+export default function PrivateRoute({ children }: IProps) {
+  const { user, isLoading } = useAppSelector((state) => state.user);
+
+  const { pathname } = useLocation();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!user.email && !isLoading) {
+    return <Navigate to="/login" state={{ path: pathname }} />;
+  }
+
+  return children;
+}

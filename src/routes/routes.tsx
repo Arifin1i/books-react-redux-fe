@@ -9,6 +9,7 @@ import { LoginForm } from '../pages/Login';
 import { Signup } from '../pages/SignUp';
 import NewBooks from '../pages/NewBooks';
 import BookEditForm from '../pages/BookEditForm';
+import PrivateRoute from './PrivateRoute';
 
 
 
@@ -35,10 +36,6 @@ const routes = createBrowserRouter([
         path: '/bookEditForm/:id',
         element: <BookEditForm book={undefined}></BookEditForm>
       },
-    //   {
-    //     path: '/checkout',
-    //     element: <Checkout />,
-    //   },
     ],
   },
   {
@@ -51,7 +48,7 @@ const routes = createBrowserRouter([
   },
   {
     path: '/newBooks',
-    element: <NewBooks></NewBooks>
+    element: <PrivateRoute><NewBooks></NewBooks></PrivateRoute>
   },
 
 //   {

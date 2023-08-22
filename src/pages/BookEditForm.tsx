@@ -11,8 +11,8 @@ const BookEditForm = () => {
   const { data, isLoading, isError } = useSingleBookQuery(id);
   console.log(data);
 
-  const dispatch = useDispatch();
-  // const { data: bookToUpdate } = useSingleBookQuery(id); // Replace with your RTK Query's getBook query hook
+  // const dispatch = useDispatch();
+  const { data: bookToUpdate } = useSingleBookQuery(id); // Replace with your RTK Query's getBook query hook
 
   // console.log(data);
   const [title, setTitle] = useState(bookToUpdate.title);
@@ -33,16 +33,14 @@ const BookEditForm = () => {
       published: setPublished,
     };
 
-
-
-
-    try {
-      const response = await dispatch(updateBook(updatedBook)).unwrap();
-      toast.success("Book updated successfully");
-      // You can also redirect the user or perform other actions after a successful update
-    } catch (error) {
-      toast.error("Error updating book");
-    }
+    console.log(updatedBook)
+    // try {
+    //   const response = await dispatch(updateBook(updatedBook)).unwrap();
+    //   toast.success("Book updated successfully");
+    //   // You can also redirect the user or perform other actions after a successful update
+    // } catch (error) {
+    //   toast.error("Error updating book");
+    // }
   };
 
   return (
@@ -62,7 +60,7 @@ const BookEditForm = () => {
           <label>Author</label>
           <input
             type="text"
-            value={author}
+            // value={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
         </div>
@@ -70,7 +68,7 @@ const BookEditForm = () => {
           <label>Genre</label>
           <input
             type="text"
-            value={genre}
+            // value={genre}
             onChange={(e) => setGenre(e.target.value)}
           />
         </div>
@@ -78,11 +76,13 @@ const BookEditForm = () => {
           <label>Published Year</label>
           <input
             type="number"
-            value={published}
+            // value={published}
             onChange={(e) => setPublished(e.target.value)}
           />
         </div>
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" 
+        // disabled={isLoading}
+        >
           {isLoading ? "Updating..." : "Update Book"}
         </button>
       </form>

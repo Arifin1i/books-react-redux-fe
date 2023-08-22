@@ -53,39 +53,52 @@ export function Signup({ className, ...props }: UserAuthFormProps) {
           <h1 className="text-5xl font-bold">Signup now!</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-2">
-              <div className="grid gap-1">
-                <label className="sr-only" htmlFor="email">
+              {/* <div className="grid gap-1"> */}
+              <label className="label">
+                <span className="label-text  w-full px-4 py-2 rounded-md border">
                   Email
-                </label>
-                <input
-                  id="email"
-                  placeholder="name@example.com"
-                  type="email"
-                  autoCapitalize="none"
-                  autoComplete="email"
-                  autoCorrect="off"
-                  {...register("email", { required: "Email is required" })}
-                />
-                {errors.email && <p>{errors.email.message}</p>}
-                <input
-                  id="password"
-                  placeholder="your password"
-                  type="password"
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  {...register("password", {
-                    required: "Password is required",
-                  })}
-                />
-                {errors.password && <p>{errors.password.message}</p>}
-                <input
-                  id="password"
-                  placeholder="confirm password"
-                  type="password"
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                />
-              </div>
+                </span>
+              </label>
+              <input
+                id="email"
+                placeholder="name@example.com"
+                type="email"
+                autoCapitalize="none"
+                autoComplete="email"
+                autoCorrect="off"
+                {...register("email", { required: "Email is required" })}
+              />
+              {errors.email && <p>{errors.email.message}</p>}
+              
+              <label className="label">
+                <span className="label-text  w-full px-4 py-2 rounded-md border">
+                  Password
+                </span>
+              </label>
+              <input
+                id="password"
+                placeholder="your password"
+                type="password"
+                autoCapitalize="none"
+                autoCorrect="off"
+                {...register("password", {
+                  required: "Password is required",
+                })}
+              />
+              {errors.password && <p>{errors.password.message}</p>}
+              <label className="label">
+                <span className="label-text  w-full px-4 py-2 rounded-md border">
+                  Confirm Password
+                </span>
+              </label>
+              <input
+                id="password"
+                placeholder="confirm password"
+                type="password"
+                autoCapitalize="none"
+                autoCorrect="off"
+              />
+              {/* </div> */}
               <button>Create Account</button>
             </div>
           </form>
